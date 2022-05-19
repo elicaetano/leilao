@@ -9,9 +9,12 @@
 
 	<link href= "https://elicaetano.github/AC01_DevOps/cadastro.html">
 
+   
 	<script src="https://kit.fontawesome.com/db3a9100e9.js"></script>
+  
+    <script src="funcoes.js"></script>
 
-<body style="background-image: url(8.webp); background-repeat: no-repeat ; background-size: cover; height: 10%; width: 50%;">
+    <body onload="shUser()" style="background-image: url(8.webp); background-size: cover; width: 50%;">
   <span class="date pull-right"></span>
 	<div1 id="current_date"; style="color: aliceblue; float: right;"></p>
 		<script>
@@ -23,25 +26,41 @@
     </div>
 
 <div class="col-md-4 mb-3">
-    <label style="color: black; font-size: large;">Usuário</label>
+    <label for="@" style="color: black; font-size: large;">Usuário</label>
     <div class="input-group">
       <div class="input-group-prepend">
-        <span class="input-group-text" id="inputGroupPrepend2">Email</span>
+        <span class="input-group-text" id="n">Nome</span>
       </div>
-      <input type="text" class="form-control" id="validationDefaultUsername" placeholder="Digite seu email" aria-describedby="inputGroupPrepend2" required>
-</div>
+      <input type="text" class="form-control" id="user" Name="user"placeholder="Digite nome">
+      <br>
+      <button type="button"  class="btn btn-warning" onclick="setUser()">Salvar</button>
+      
 
+    </div>
 <br>
 <div>
     <label style="color:black;font-size: large;">Senha</label>
-    <label for="inputPassword2" class="sr-only">Senha</label>
-    <input type="password" class="form-control" id="inputPassword2" placeholder="Senha">
+    <label for="senha" class="sr-only">Senha</label>
+    <input type="password" class="form-control" id="senha" placeholder="Senha">
   </div>
   <br><br>
-  <button type="button" class="btn btn-warning"><a href="principal.html">Entrar</a></button> 
-  <button type="button" class="btn btn-warning"><a href="index.html">Voltar</a></button>
 
+<button type="button" class="btn btn-warning" onclick="vaiindex()">Entrar</button>
+<button type="button" class="btn btn-warning" onclick="vaiLance()">Lance</button>
+
+<p id="saida"></p>
 </body>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
