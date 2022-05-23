@@ -6,60 +6,106 @@
 	<title> cadastro</title>
 	
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<link href= "https://elicaetano.github/AC01_DevOps/cadastro.html">
 
-    <script src="https://kit.fontawesome.com/db3a9100e9.js"></script>
+  <script src="https://kit.fontawesome.com/db3a9100e9.js"></script>
 <body style="background-image:url(10.jpg); background-repeat: no-repeat ; background-size: cover;">
+
+  <script>
+
+    function enviaMsg() {
+      const xhttp = new XMLHttpRequest();
+    
+      xhttp.onreadystatechange = function() {
+        console.log("readyState:" + this.readyState);
+      console.log("status:" + this.status);
+    
+        if (this.readyState == 4 && this.status == 200) {
+          imprimeResposta(this);
+        }
+      };
+    
+      xhttp.onload = function() {
+        document.getElementById("resposta").innerHTML = this.responseText;
+      };
+        document.getElementById("saida").innerHTML = "Mensagem enviada"; 
+      var data = {
+      "nome":document.getElementById("nome").value,
+      "sobrenome":document.getElementById("sobrenome").value,
+      "usuario":document.getElementById("usuario").value,
+      "cidade":document.getElementById("cidade").value,
+      "estado":document.getElementById("estado").value,
+      "cep":document.getElementById("cep").value
+       };
+      var jsondata = JSON.stringify(data);
+      var url = "https://0aumc04l6h.execute-api.us-east-1.amazonaws.com/Versao";
+      xhttp.open("POST", url);
+      xhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+      xhttp.send(jsondata);
+    }
+    
+    function imprimeResposta(xml) {
+      var xmlDoc = xml.responseXML;
+      document.getElementById("resposta").innerHTML = xmlDoc;
+    }
+    </script>
+
     <div>
     <h3 style="color: white; text-align: center;">Preenchar os Campos abaixo</3>
     </div>
-  <form>
+    <article>
+      <br><br>
+      <p id="saida" style="color:white;"> Envio de dados</p>
+  <table>
     <div class="form-row">
       <div class="col-md-4 mb-3">
-        <label style="color:white;" for="validationDefault01">Primeiro nome</label>
-        <input type="text" class="form-control" id="validationDefault01" placeholder="Nome" value="Nome" required>
-      </div>
+        <label style="color:white;" for="nome">Primeiro nome</label>
+      <input type="text" class="form-control" id="nome" placeholder="Nome"required></input>
+    </div>
+
       <div class="col-md-4 mb-3">
-        <label style="color: white;" for="validationDefault02">Sobrenome</label>
-        <input type="text" class="form-control" id="validationDefault02" placeholder="Sobrenome" value="Sobrenome" required>
+         <label style="color: white;" for="sobrenome">Sobrenome</label>
+        <input type="text" class="form-control" id="sobrenome" placeholder="Sobrenome" required></input>
       </div>
-      <div class="col-md-4 mb-3">
-        <label  style="color: white;" for="validationDefaultUsername">Usuário</label>
+
+        <div class="col-md-4 mb-3">
+          <label  style="color: white;" for="email">Email</label>
           <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroupPrepend2">@</span>
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="email">@</Uspan>
+            </div>
+             <input type="text" class="form-control" id="usuario" placeholder="Email" aria-describedby="usuario" required></input>
           </div>
-          <input type="text" class="form-control" id="validationDefaultUsername" placeholder="Usuário" aria-describedby="inputGroupPrepend2" required>
         </div>
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="col-md-6 mb-3">
-        <label  style="color: white;" for="validationDefault03">Cidade</label>
-        <input type="text" class="form-control" id="validationDefault03" placeholder="Cidade" required>
-      </div>
-      <div class="col-md-3 mb-3">
-        <label  style="color: white;" for="validationDefault04">Estado</label>
-        <input type="text" class="form-control" id="validationDefault04" placeholder="Estado" required>
-      </div>
-      <div class="col-md-3 mb-3">
-        <label  style="color: white;" for="validationDefault05">CEP</label>
-        <input type="text" class="form-control" id="validationDefault05" placeholder="CEP" required>
-      </div>
-    </div>
-    <div class="form-group">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
-          <label  style="color: white;" class="form-check-label" for="invalidCheck2">
-            Concordo com os termos e condições
-          </labe0l>
+      <div class="form-row">
+        <div class="col-md-6 mb-3">
+          <label  style="color: white;" for="cidade">Cidade</label>
+          <input type="text" class="form-control" id="cidade" placeholder="Cidade" required>
         </div>
-
-        <button type="button" class="btn cor" title="Volta para pagina anterior"><a href="longin.html">Salvar</a>
+      <div class="col-md-3 mb-3">
+        <label  style="color: white;" for="estado">Estado</label>
+        <input type="text"class="form-control" id="estado" placeholder="Estado" required>
       </div>
-  </form>
-    <button type="button" class="btn cor" title="Abre tela para consultar"><a href="longin.html">Voltar</a>
 
+      <div class="col-md-3 mb-3">
+        <label  style="color: white;" for="cep">CEP</label>
+        <input type="text" class="form-control" id="cep" placeholder="CEP" required>
+      </div>
+   
+    </table>
+    <button type="button" class="btn cor" onclick="enviaMsg()">Salvar</button>
+  
+    <button type="button" class="btn cor"><a href="index.html">Voltar</a></button>
+
+    <br><br><br>
+    Resposta:
+    <br>
+    <span id="resposta" style="color: white;">---------</span>
+
+  </article>
+  
+</html>
 </body>
+
